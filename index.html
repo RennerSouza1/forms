@@ -531,24 +531,24 @@
                 e.target.value = value;
             });
             
-            // Máscara para telefone
-            telefoneInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                
-                if (value.length > 11) {
-                    value = value.substring(0, 11);
-                }
-                
-                if (value.length > 6) {
-                    value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
-                } else if (value.length > 2) {
-                    value = value.replace(/^(\d{2})(\d{4})$/, '($1) $2');
-                } else if (value.length > 0) {
-                    value = value.replace(/^(\d{2})$/, '($1)');
-                }
-                
-                e.target.value = value;
-            });
+// Máscara para telefone
+telefoneInput.addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    
+    if (value.length > 11) {
+        value = value.substring(0, 11);
+    }
+    
+    if (value.length > 6) {
+        value = value.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    } else if (value.length > 2) {
+        value = value.replace(/^(\d{2})(\d{4})$/, '($1) $2');
+    } else if (value.length > 0) {
+        value = value.replace(/^(\d{2})$/, '($1)');
+    }
+    
+    e.target.value = value;
+});
             
             // Validação de CNPJ
             function validarCNPJ(cnpj) {
@@ -607,7 +607,6 @@
                 return true;
             }
             
-// Inicialização do intl-tel-input
 let iti;
 if (telefoneInput) {
     iti = window.intlTelInput(telefoneInput, {
@@ -617,11 +616,10 @@ if (telefoneInput) {
         preferredCountries: ["br", "us", "gb", "pt"]
     });
     
-    // Remove a máscara antiga de telefone pois a biblioteca já possui formatação própria
-    telefoneInput.removeEventListener('input', mascaraTelefone);
+ 
 }
 
-// Alteração na função de validação de telefone
+
 function validarTelefone(telefone) {
     return iti && iti.isValidNumber();
 }
